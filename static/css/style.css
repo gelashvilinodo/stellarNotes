@@ -1,0 +1,60 @@
+:root {
+    --font: "Winky Sans", sans-serif;
+    --bgc: #171718;
+}
+
+.main_container {
+    width: min(100%, 1440px);
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 20px;
+    background-image: linear-gradient(to right, #f3f3f3, #c9c7d4, #9f9db6, #767599, #4d507d, #3a406b, #283059, #142148, #181e3b, #191c2f, #191923, #171718);
+}
+
+header img {
+    width: 90px;
+    transition: all .2s;
+}
+
+header img:hover {
+    transform: scale(1.1);
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+nav ul li a {
+    color: #a4b0d3;
+    font-family: var(--font);
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-shadow: 0px 2px 5px #006b5b;
+}
+
+nav ul li a:hover {
+    color: #cdc2df;
+}
+
+header button {
+    padding: 10px 20px;
+    background-color: #3D0662;
+    color: #a4b0d3;
+    font-family: var(--font);
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .2s;
+}

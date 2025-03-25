@@ -46,7 +46,7 @@ nav ul li a:hover {
     color: #cdc2df;
 }
 
-header button {
+.logout {
     padding: 10px 20px;
     background-color: #3D0662;
     color: #a4b0d3;

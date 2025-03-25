@@ -1,7 +1,2 @@
 {% extends "base.html" %} {% block title %} Articles {% endblock title %}
-{%block content %} {% if user.is_authenticated %}
-<p>Welcome {{ user.username }}</p>
-{% else %}
-<a href="{% url 'login' %}">Login</a>
-<a href="{% url 'register' %}">Register</a>
-{% endif %} {% endblock content %}
+{%block content %}  {% endblock content %}

@@ -6,9 +6,9 @@
   </a>
   <nav>
     <ul>
-      <li><a href="#">Notes</a></li>
+      <li><a href="{% url 'home' %}">Notes</a></li>
       <li><a href="#">Categories</a></li>
-      <li><a href="#">profile</a></li>
+      <li><a href="#">{{user.username}}</a></li>
     </ul>
   </nav>
   <a href="{% url 'logout' %}" class="logout">logout</a>

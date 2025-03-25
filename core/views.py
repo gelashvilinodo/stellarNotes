@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from core.forms import RegisterForm, LoginForm
 
+
 def home_view(request):
     return render(request, "home.html")
 
@@ -16,7 +17,7 @@ def register_view(request):
             password = form.cleaned_data.get("passwor1")
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect("home")
+            return redirect("login")
     else:
         form = RegisterForm()
     return render(request, "register.html", {"form": form})
@@ -39,4 +40,4 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect("home")
+    return redirect("login")

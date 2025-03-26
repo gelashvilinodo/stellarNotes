@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from core.forms import RegisterForm, LoginForm
+from .models import Articles
 
 
 def home_view(request):
-    return render(request, "home.html")
+    articless = Articles.objects.all()
+    return render(request, "home.html", {"articles": articless})
 
 
 def register_view(request):

@@ -25,6 +25,9 @@ class Articles(models.Model):
             return 0
         rating = sum([review.rating for review in reviews]) / len(reviews)
         return rating
+    
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):

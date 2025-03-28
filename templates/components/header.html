@@ -1,5 +1,4 @@
-{% load static %}
-{% load tags %}
+{% load static %} {% load tags %}
 
 <header>
   <a href="{% url 'home' %}">
@@ -8,24 +7,24 @@
   <nav>
     <ul>
       <li><a href="{% url 'home' %}">Notes</a></li>
-      <li><a href="#">Categories</a></li>
+      <li id="category_btn">Categories</li>
       <li>
         <a href="{% url 'user_articles' user.username %}">{{user.username}}</a>
       </li>
       <li><a href="{% url 'create_article' %}">New Article</a></li>
     </ul>
   </nav>
-  <div id="category">
+  <div id="category" class="hidden">
     <ul>
-      {% get_all_tags as tags %}
-        {% for tag in tags %}
-          <li>
-            <a href="{% url 'article_by_tag' tag.name %}">{{ tag.name }}</a>
-          </li>
-        {% empty %}
-          <li>No tags available</li>
-        {% endfor %}
+      {% get_all_tags as tags %} {% for tag in tags %}
+      <li>
+        <a href="{% url 'article_by_tag' tag.name %}">{{ tag.name }}</a>
+      </li>
+      {% empty %}
+      <li>No tags available</li>
+      {% endfor %}
     </ul>
   </div>
   <a href="{% url 'logout' %}" class="logout">logout</a>
+  {% comment %} <script src="{% static 'js/script.js' %}"></script> {% endcomment %}
 </header>

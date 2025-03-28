@@ -3,8 +3,10 @@
   <div class="card-body">
     <h5 class="card-title">{{ article.title }}</h5>
     <p class="card-text truncate-text">{{ article.text }}</p>
-    <a href="{% url 'article' article.pk %}" class="btn btn-primary"
-      >Read More</a
-    >
+    <div class="btn_and_rating">
+      <a href="{% url 'article' article.pk %}" class="btn btn-primary"
+      >Read More</a>
+      <p>Rating: {{ article.rating }}</p>
+    </div>
   </div>
 </div>

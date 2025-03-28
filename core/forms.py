@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from core.models import Comment, ArticleModel
+from core.models import Comment, ArticleModel, Review
 
 
 class ArticleForm(forms.ModelForm):
@@ -25,6 +25,33 @@ class ArticleForm(forms.ModelForm):
                 'placeholder': 'Write your article here...'
             }),
         }
+        
+        
+
+class ReviewForm(forms.ModelForm):
+    RATING_CHOICES = [
+        (0, '0 ~ No rating'),
+        (1, '1 ~ Poor'),
+        (2, '2 ~ Fair'),
+        (3, '3 ~ Good'),
+        (4, '4 ~ Very Good'),
+        (5, '5 ~ Great'),
+    ]
+    
+    class Meta:
+        model = Review
+        fields = ['rating']
+        widgets = {
+            'rating': forms.Select(attrs={
+                'class': 'form-control',
+                'placeholder': 'Rate article'
+            }),
+        }
+        
+    rating = forms.ChoiceField(choices=RATING_CHOICES, widget=forms.Select(attrs={
+        'class': 'form-control',
+    }))
+
 
 
 class RegisterForm(UserCreationForm):

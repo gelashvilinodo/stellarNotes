@@ -41,6 +41,19 @@ nav ul {
     gap: 60px;
 }
 
+nav ul li {
+    color: #a4b0d3;
+    font-family: var(--font);
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-shadow: 0px 2px 5px #006b5b;
+    cursor: pointer;
+}
+
+nav ul li:hover {
+    color: #cdc2df;
+}
+
 nav ul li a {
     color: #a4b0d3;
     font-family: var(--font);
@@ -68,6 +81,52 @@ nav ul li a:hover {
 
 .logout:hover {
     background-color: #c9c7d4;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: flex;
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-95%);
+    background-color: #142148;
+    padding: 14px 20px;
+    width: 13%;
+    border-radius: 10px;
+    height: 38vh;
+    overflow: scroll;
+    scrollbar-width: none;
+    scrollbar-color: #006b5b var(--bgc);
+    z-index: 3;
+}
+
+#category ul {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    overflow: scroll;
+    scrollbar-width: none;
+
+}
+
+#category ul li {
+    color: #191923;
+    font-family: var(--font);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 1px solid #006b5b;
+    border-radius: 5px;
+    background-color: #f3f3f3;
+}
+
+#category ul li a {
+    display: flex;
+    padding: 4px 7px;
 }
 
 .login_cont {
@@ -273,6 +332,22 @@ nav ul li a:hover {
     white-space: normal;
 }
 
+.btn_and_rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn_and_rating p {
+    padding: 10px 14px;
+    background-color: #142148;
+    border: 1px solid #3a406b;
+    border-radius: 5px;
+    color: #f2f1fa;
+    font-family: var(--font);
+    font-size: 16px;
+}
+
 /* article page : */
 
 .article_view {
@@ -414,6 +489,21 @@ nav ul li a:hover {
     font-family: var(--font);
 }
 
+.reviews {
+    width: 30%;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.reviews h3 {
+    color: #f2f1fa;
+    font-size: 26px;
+    font-weight: 600;
+    font-family: var(--font);
+}
+
 .create_comment form {
     display: flex;
     flex-direction: column;
@@ -428,7 +518,7 @@ nav ul li a:hover {
     border-radius: 5px;
     width: 100%;
     cursor: auto;
-    color: #a4b0d3;
+    color: #f2f1fa;
     font-family: var(--font);
     font-size: medium;
     resize: none;
@@ -445,7 +535,43 @@ nav ul li a:hover {
     cursor: pointer;
     color: #a4b0d3;
     font-family: var(--font);
-    font-size: 20px;
+    font-size: 16px;
+}
+
+.review form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.review form select {
+    outline: none;
+    background-color: var(--bgc);
+    padding: 5px 10px;
+    border: 1px solid #006b5b;
+    border-radius: 5px;
+    width: 100%;
+    color: #f2f1fa;
+    font-family: var(--font);
+    font-size: medium;
+}
+
+.review form select:focus {
+    background-color: var(--bgc);
+    color: #f2f1fa;
+}
+
+.review form button {
+    width: 40%;
+    padding: 10px 14px;
+    background-color: #142148;
+    border: 1px solid #3a406b;
+    border-radius: 5px;
+    transition: all .1s linear;
+    cursor: pointer;
+    color: #a4b0d3;
+    font-family: var(--font);
+    font-size: 16px;
 }
 
 /* new article  */
@@ -542,7 +668,7 @@ nav ul li a:hover {
 .new_article_form button {
     width: 30%;
     padding: 10px 14px;
-    background-color:#006b5b;
+    background-color: #006b5b;
     border: 1px solid #3a406b;
     border-radius: 5px;
     transition: all .1s linear;

@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
-from core.forms import RegisterForm, LoginForm, CommentForm, ArticleForm
-from .models import ArticleModel, Comment, Tag
+from core.forms import RegisterForm, LoginForm, CommentForm, ArticleForm, ReviewForm
+from .models import ArticleModel, Comment, Tag, Review
 from django.contrib.auth.models import User
 
 
 def home_view(request):
-    articles = ArticleModel.objects.all()
+    articles = ArticleModel.objects.all().order_by("-created_at")
     return render(request, "home.html", {"articles": articles})
 
 
@@ -16,6 +16,9 @@ def article_view(request, pk):
     article.views += 1
     article.save()
     comments = Comment.objects.filter(article=article).order_by("-created_at")
+    reviews = Review.objects.filter(article=article)
+    rating = article.rating()
+    
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -26,10 +29,26 @@ def article_view(request, pk):
             return redirect("article", pk=pk)
     else:
         form = CommentForm()
+        
+    if request.method == "POST":
+        review_form = ReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.article = article
+            review.user = request.user
+            review.save()
+            return redirect("article", pk=pk)
+    else:
+        review_form = ReviewForm()
+    
+    
     context = {
         "form": form,
         "article": article,
         "comments": comments,
+        "reviews": reviews,
+        "rating": rating,
+        "review_form": review_form,
     }
     return render(request, "article.html", context)
 

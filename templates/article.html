@@ -1,7 +1,5 @@
-{% extends "base.html" %} {% block title %} 
-{{ article.title }} 
-{% endblock title%} 
-{% block content %}
+{% extends "base.html" %} {% block title %} {{ article.title }} 
+{% endblock title%} {% block content %}
 <div class="article_view">
   <div class="article_head">
     <h1>{{ article.title }}</h1>
@@ -17,8 +15,7 @@
         <li>Tags:</li>
         {% for tag in article.tags.all %}
         <li class="real_tags">
-          <a href="{% url 'article_by_tag' tag.name %}" >
-          {{ tag.name }}</a>
+          <a href="{% url 'article_by_tag' tag.name %}"> {{ tag.name }}</a>
         </li>
         {% empty %}
         <li>No tags available</li>
@@ -44,11 +41,22 @@
       <p>No comments available</p>
       {% endfor %}
     </div>
-    <div class="create_comment">
-      <form method="POST">
-        {% csrf_token %} {{ form.as_p }}
-        <button type="submit">Submit</button>
-      </form>
+    <div class="reviews">
+      <h3>Leave a Review</h3>
+      <div class="create_comment">
+        <form method="POST">
+          {% csrf_token %} {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="review">
+        <form method="POST">
+          {% csrf_token %} {{ review_form.as_p }}
+          <button type="submit" name="review_submit" class="btn btn-primary">
+            Submit Review
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} Create Article {% endblock title %}
+{% block content %}
+<div class="new_article_container">
+    <h1 class="new_article_heading">Create New Article</h1>
+    <form method="POST" enctype="multipart/form-data" class="new_article_form" novalidate>
+        {% csrf_token %}
+        <div class="new_article_title">
+            {{ form.title }}
+        </div>
+        <div class="new_image">
+            {{ form.thumbnail }}
+        </div>
+        <div class="new_tags">
+            {{ form.tags }}
+        </div>
+        <div class="new_article_text">
+            {{ form.text }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock content %}

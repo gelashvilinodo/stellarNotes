@@ -1,4 +1,7 @@
-{% extends "base.html" %} {% block title %} {{ article.title }} {% endblock title%} {% block content %}
+{% extends "base.html" %} {% block title %} 
+{{ article.title }} 
+{% endblock title%} 
+{% block content %}
 <div class="article_view">
   <div class="article_head">
     <h1>{{ article.title }}</h1>
@@ -13,7 +16,10 @@
       <ul>
         <li>Tags:</li>
         {% for tag in article.tags.all %}
-        <li class="real_tags">{{ tag.name }}</li>
+        <li class="real_tags">
+          <a href="{% url 'article_by_tag' tag.name %}" >
+          {{ tag.name }}</a>
+        </li>
         {% empty %}
         <li>No tags available</li>
         {% endfor %}
@@ -21,7 +27,28 @@
     </div>
     <div class="article_text_cont">
       <img src="{{ article.thumbnail.url }}" alt="" />
-        <p class="article_text">{{ article.text|safe }}</p><p class="article_text">{{ article.text }}</p>
+      <p class="article_text">{{ article.text|safe }}</p>
+      <p class="article_text">{{ article.text }}</p>
+    </div>
+  </div>
+  <div class="article_comments">
+    <div class="load_comments">
+      <h2>Comments</h2>
+      {% for comment in comments %}
+      <div class="comment">
+        <p class="comment_user">{{ comment.user.username }}</p>
+        <p class="comment_text">{{ comment.text }}</p>
+        <p class="comment_date">{{ comment.created_at }}</p>
+      </div>
+      {% empty %}
+      <p>No comments available</p>
+      {% endfor %}
+    </div>
+    <div class="create_comment">
+      <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Submit</button>
+      </form>
     </div>
   </div>
 </div>

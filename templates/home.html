@@ -2,20 +2,9 @@
 {%block content %}
 <div class="card_cont" style="width: 100%">
   {% for article in articles %}
-  <div class="card" style="width: 18rem">
-    <img
-      src="{{ article.thumbnail.url }}"
-      class="card-img-top"
-      alt="Thumbnail"
-    />
-    <div class="card-body">
-      <h5 class="card-title">{{ article.title }}</h5>
-      <p class="card-text truncate-text">{{ article.text }}</p>
-      <a href="{% url 'article' article.pk %}" class="btn btn-primary"
-        >Read More</a
-      >
-    </div>
-  </div>
+    {% include "components/cards.html" %}
+  {% empty %}
+    <p>No articles available</p>
   {% endfor %}
 </div>
 {% endblock content %}

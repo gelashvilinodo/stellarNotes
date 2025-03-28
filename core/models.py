@@ -10,7 +10,7 @@ class Tag(models.Model):
         return self.name
 
 
-class Articles(models.Model):
+class ArticleModel(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     thumbnail = models.ImageField(upload_to="media/")
     title = models.CharField(max_length=200)
@@ -25,13 +25,13 @@ class Articles(models.Model):
             return 0
         rating = sum([review.rating for review in reviews]) / len(reviews)
         return rating
-    
+
     def __str__(self):
         return self.title
 
 
 class Comment(models.Model):
-    article = models.ForeignKey(Articles, on_delete=models.CASCADE)
+    article = models.ForeignKey(ArticleModel, on_delete=models.CASCADE)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -42,7 +42,7 @@ class Comment(models.Model):
 class Review(models.Model):
 
     user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
-    article = models.ForeignKey(Articles, on_delete=models.CASCADE)
+    article = models.ForeignKey(ArticleModel, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField(validators=[MaxValueValidator(5)])
 
     class Meta:

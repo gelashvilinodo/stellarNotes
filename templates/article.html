@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %} {{ article.title }} {% endblock title%} {% block content %}
+<div class="article_view">
+  <div class="article_head">
+    <h1>{{ article.title }}</h1>
+    <div class="article_info">
+      <p>by: {{ article.author }}</p>
+      <p>created on: {{ article.created_at }}</p>
+      <p>views: {{ article.views }}</p>
+    </div>
+  </div>
+  <div class="article_body">
+    <div class="tags">
+      <ul>
+        <li>Tags:</li>
+        {% for tag in article.tags.all %}
+        <li class="real_tags">{{ tag.name }}</li>
+        {% empty %}
+        <li>No tags available</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="article_text_cont">
+      <img src="{{ article.thumbnail.url }}" alt="" />
+        <p class="article_text">{{ article.text|safe }}</p><p class="article_text">{{ article.text }}</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

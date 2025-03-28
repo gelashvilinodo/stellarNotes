@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %} Articles {% endblock title %}
 {%block content %}
-<div class="card" style="width: 18rem">
-  {% for article in Articless %}
+<div class="card_cont" style="width: 100%">
+  {% for article in articles %}
   <div class="card" style="width: 18rem">
     <img
       src="{{ article.thumbnail.url }}"
@@ -10,12 +10,12 @@
     />
     <div class="card-body">
       <h5 class="card-title">{{ article.title }}</h5>
-      <p class="card-text">{{ article.text }}</p>
-      <a href="#" class="btn btn-primary">Read More</a>
+      <p class="card-text truncate-text">{{ article.text }}</p>
+      <a href="{% url 'article' article.pk %}" class="btn btn-primary"
+        >Read More</a
+      >
     </div>
   </div>
-  {% empty %}
-  <p>No articles available.</p>
   {% endfor %}
 </div>
 {% endblock content %}

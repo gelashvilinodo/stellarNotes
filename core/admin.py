@@ -1,8 +1,8 @@
 from django.contrib import admin
-from core.models import Tag, Articles, Comment, Review
+from core.models import Tag, Comment, Review, ArticleModel
 
 # Register your models here.
 admin.site.register(Tag)
-admin.site.register(Articles)
+admin.site.register(ArticleModel)
 admin.site.register(Comment)
 admin.site.register(Review)

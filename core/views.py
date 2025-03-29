@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from core.forms import RegisterForm, LoginForm, CommentForm, ArticleForm, ReviewForm
 from .models import ArticleModel, Comment, Tag, Review
 from django.contrib.auth.models import User
+from django.http import HttpResponseForbidden
 
 
 def home_view(request):
@@ -77,6 +78,26 @@ def article_by_tag_view(request, tag_name):
     tag = get_object_or_404(Tag, name=tag_name)
     articles = ArticleModel.objects.filter(tags=tag).order_by("-created_at")
     return render(request, "articles_by_tag.html", {"articles": articles, "tag": tag})
+
+
+def delete_article_view(request, pk):
+    article = get_object_or_404(ArticleModel, pk=pk)
+    if request.user == article.author:
+        article.delete()
+        return redirect("home")
+    else:
+        return HttpResponseForbidden("You are not allowed to delete this article.")
+    
+    
+def delete_comment_view(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.user == comment.user:
+        article_pk = comment.article.pk
+        comment.delete()
+        return redirect("article", pk=article_pk)
+    else:
+        return HttpResponseForbidden("You are not allowed to delete this comment.")
+    
 
 
 def register_view(request):
